@@ -36,18 +36,18 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:821334628099:android:8ec6a0c23ea45a30a9fb36",
+        "mobilesdk_app_id": "1:821334628099:android:53408bccfdeac739a9fb36",
         "android_client_info": {
           "package_name": "com.example.upentregas"
         }
       },
       "oauth_client": [
         {
-          "client_id": "821334628099-entja79mmcgmpg1ups30412nmg4gdn84.apps.googleusercontent.com",
+          "client_id": "821334628099-9174qer97e56r5qdjo5bcnbbhvnsh175.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.upentregas",
-            "certificate_hash": "a816be48f0e7d8321f83aff2ab80a470a7659b20"
+            "certificate_hash": "7c41630831a07bd8d6a0f2fa2b83b695c775f01c"
           }
         },
         {

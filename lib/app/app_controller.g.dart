@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_controller.dart';
+part of 'views/esquece/app_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
