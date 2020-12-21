@@ -50,16 +50,18 @@ class _PhoneLoginState extends State<PhoneLogin> {
                                   Text(
                                     'LOGIN',
                                     style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w900,
-                                        color: Colors.black),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w900,
+                                      //color: Colors.white,
+                                    ),
                                   ),
                                   Text(
                                     'Faca login para verificar suas entregas',
                                     style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.normal,
-                                        color: Colors.black),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.normal,
+                                      //color: Colors.black,
+                                    ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(27.0),

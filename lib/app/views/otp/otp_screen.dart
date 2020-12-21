@@ -19,12 +19,12 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  /// Control the input text field.
+  /// Controller do input de texto.
   TextEditingController _pinEditingController = TextEditingController();
 
   /// Decorate the outside of the Pin.
   PinDecoration _pinDecoration =
-      UnderlineDecoration(enteredColor: Colors.black, hintText: '333333');
+      UnderlineDecoration(enteredColor: Colors.black, hintText: '------');
 
   bool isCodeSent = false;
   String _verificationId;
@@ -40,14 +40,14 @@ class _OTPScreenState extends State<OTPScreen> {
     print("isValid - $isCodeSent");
     print("mobiel ${widget.mobileNumber}");
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.0,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
           ),
-          color: Colors.white,
+          //color: Colors.white,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -55,7 +55,7 @@ class _OTPScreenState extends State<OTPScreen> {
         bottom: PreferredSize(
           child: Container(
             padding: EdgeInsets.only(left: 16.0, bottom: 16, top: 4),
-            color: Colors.white,
+            //color: Colors.white,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -63,7 +63,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      "Verify Details",
+                      "Verifique os detalhes",
                       style: TextStyle(
                           fontSize: 22.0, fontWeight: FontWeight.bold),
                     ),
@@ -71,7 +71,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       height: 8,
                     ),
                     Text(
-                      "OTP sent to ${widget.mobileNumber}",
+                      "O codigo foi enviado para: ${widget.mobileNumber}",
                       style: TextStyle(
                           fontSize: 16.0, fontWeight: FontWeight.bold),
                     ),
@@ -98,7 +98,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   if (pin.length == 6) {
                     _onFormSubmitted();
                   } else {
-                    showToast("Invalid OTP", Colors.red);
+                    showToast("Codigo invalido", Colors.red);
                   }
                 },
               ),
@@ -113,9 +113,9 @@ class _OTPScreenState extends State<OTPScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0.0)),
                     child: Text(
-                      "ENTER OTP",
+                      "DIGITE O CODIGO",
                       style: TextStyle(
-                          color: Colors.white,
+                          //color: Colors.white,
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold),
                     ),
@@ -123,7 +123,7 @@ class _OTPScreenState extends State<OTPScreen> {
                       if (_pinEditingController.text.length == 6) {
                         _onFormSubmitted();
                       } else {
-                        showToast("Invalid OTP", Colors.red);
+                        showToast("Codigo invalido", Colors.red);
                       }
                     },
                     padding: EdgeInsets.all(16.0),
@@ -170,10 +170,11 @@ class _OTPScreenState extends State<OTPScreen> {
               ),
               (Route<dynamic> route) => false);
         } else {
-          showToast("Error validating OTP, try again", Colors.red);
+          showToast(
+              "Erro na validacao do seu codigo, tente novamente", Colors.red);
         }
       }).catchError((error) {
-        showToast("Try again in sometime", Colors.red);
+        showToast("Tente novamente mais tarde", Colors.red);
       });
     };
     final PhoneVerificationFailed verificationFailed =

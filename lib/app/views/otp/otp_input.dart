@@ -997,7 +997,7 @@ class PinInputTextFormField extends FormField<String> {
               var result = validator(value);
               if (result == null) {
                 if (value.isEmpty) {
-                  return 'Input field is empty.';
+                  return 'Nenhum codigo foi inserido.';
                 }
                 if (value.length < pinLength) {
                   if (pinLength - value.length > 1) {
