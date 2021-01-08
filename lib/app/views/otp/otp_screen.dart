@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:upentregas/app/models/showtoast.dart';
 import 'package:upentregas/app/views/home/home.dart';
 import 'package:upentregas/app/views/otp/otp_input.dart';
 
@@ -113,7 +114,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(0.0)),
                     child: Text(
-                      "DIGITE O CODIGO",
+                      "VERIFICAR CODIGO",
                       style: TextStyle(
                           //color: Colors.white,
                           fontSize: 18.0,
@@ -135,18 +136,6 @@ class _OTPScreenState extends State<OTPScreen> {
         ),
       ),
     );
-  }
-
-  void showToast(message, Color color) {
-    print(message);
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIos: 2,
-        backgroundColor: color,
-        textColor: Colors.white,
-        fontSize: 16.0);
   }
 
   void _onVerifyCode() async {
