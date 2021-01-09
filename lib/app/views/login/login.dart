@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:upentregas/app/models/showtoast.dart';
-import 'package:upentregas/app/services/phone_auth.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage1 extends StatefulWidget {
   const LoginPage1({Key key}) : super(key: key);
@@ -11,7 +11,8 @@ class LoginPage1 extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<LoginPage1> {
-  //final employeeController = TextEditingController();
+  var url = "http://3.135.87.42/UpApi/v2/api";
+  final employeeController = TextEditingController();
   final db = FirebaseFirestore.instance.collection('validation');
   bool shouldDisplay = false;
   String text = '';
@@ -35,54 +36,43 @@ class _LoginPage1State extends State<LoginPage1> {
                 ),
               ),
               Container(
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('validation')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) return Text('Loading...');
-                    return Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(30.0),
-                          child: TextFormField(
-                            key: UniqueKey(),
-                            //controller: employeeController,
-                            keyboardType: TextInputType.number,
-                            onChanged: (value) {
-                              setState(() async {
-                                text = value;
-                                final int documents =
-                                    await db.snapshots().length;
-                                if (text == documents.toString()) {
-                                  shouldDisplay = true;
-                                  print("sucess");
-                                } else {
-                                  shouldDisplay = false;
-                                  showToast(
-                                      "Codigo de empresa informado nao existe",
-                                      Colors.red);
-                                  print("error");
-                                }
-                              });
-                            },
-                            decoration: InputDecoration(
-                                hintText: 'Digite o codigo da empresa'),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: TextFormField(
+                    key: UniqueKey(),
+                    controller: employeeController,
+                    //keyboardType: TextInputType.number,
+                    decoration:
+                        InputDecoration(hintText: 'Digite o id da empresa'),
+                  ),
                 ),
               ),
-              Visibility(
-                visible: shouldDisplay,
-                child: PhoneLogin(),
+              Container(
+                child: FloatingActionButton(
+                  onPressed: () {
+                    getData();
+                  },
+                ),
+                //child: PhoneLogin(),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<List> getData() async {
+    String myUrl = "http://3.135.87.42/UpApi/v2/api/token";
+    final teste = jsonEncode({"ID_Cliente": "${employeeController.text}"});
+    http.Response response = await http.post(
+      myUrl,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: teste,
+    );
+    String jsonsDataString = response.body.toString();
+    print(jsonsDataString);
   }
 }
