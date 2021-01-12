@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:upentregas/app/repositories/token_project_repository.dart';
+import 'package:upentregas/app/repositories/validation_repository.dart';
+import 'package:upentregas/app/shared/textfield_controllers.dart';
 
 class LoginPage1 extends StatefulWidget {
   const LoginPage1({Key key}) : super(key: key);
@@ -11,10 +11,6 @@ class LoginPage1 extends StatefulWidget {
 }
 
 class _LoginPage1State extends State<LoginPage1> {
-  var url = "http://3.135.87.42/UpApi/v2/api";
-  final employeeController = TextEditingController();
-  final db = FirebaseFirestore.instance.collection('validation');
-  bool shouldDisplay = false;
   String text = '';
 
   @override
@@ -49,30 +45,36 @@ class _LoginPage1State extends State<LoginPage1> {
               ),
               Container(
                 child: FloatingActionButton(
-                  onPressed: () {
-                    getData();
+                  onPressed: () async {
+                    tokenProject();
+                    //LoginRepository().login();
+                    //firebaseDetails();
                   },
                 ),
                 //child: PhoneLogin(),
+              ),
+              Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: TextFormField(
+                    key: UniqueKey(),
+                    controller: telefoneController,
+                    //keyboardType: TextInputType.number,
+                    decoration: InputDecoration(hintText: 'Digite o telefone'),
+                  ),
+                ),
+              ),
+              Container(
+                child: FloatingActionButton(
+                  onPressed: () async {
+                    validation();
+                  },
+                ),
               ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  Future<List> getData() async {
-    String myUrl = "http://3.135.87.42/UpApi/v2/api/token";
-    final teste = jsonEncode({"ID_Cliente": "${employeeController.text}"});
-    http.Response response = await http.post(
-      myUrl,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: teste,
-    );
-    String jsonsDataString = response.body.toString();
-    print(jsonsDataString);
   }
 }

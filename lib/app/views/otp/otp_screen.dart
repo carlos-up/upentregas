@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:upentregas/app/models/showtoast.dart';
 import 'package:upentregas/app/views/home/home.dart';
 import 'package:upentregas/app/views/otp/otp_input.dart';
@@ -23,7 +22,6 @@ class _OTPScreenState extends State<OTPScreen> {
   /// Controller do input de texto.
   TextEditingController _pinEditingController = TextEditingController();
 
-  /// Decorate the outside of the Pin.
   PinDecoration _pinDecoration =
       UnderlineDecoration(enteredColor: Colors.black, hintText: '------');
 
