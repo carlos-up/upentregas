@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:upentregas/app/repositories/token_project_repository.dart';
+import 'package:upentregas/app/repositories/token_repository.dart';
 import 'package:upentregas/app/repositories/validation_repository.dart';
+import 'package:upentregas/app/services/phone_auth.dart';
+import 'package:upentregas/app/services/telefone_validation.dart';
 import 'package:upentregas/app/shared/textfield_controllers.dart';
 
 class LoginPage1 extends StatefulWidget {
@@ -45,15 +47,20 @@ class _LoginPage1State extends State<LoginPage1> {
               ),
               Container(
                 child: FloatingActionButton(
+                  heroTag: 'btn1',
                   onPressed: () async {
                     tokenProject();
-                    //LoginRepository().login();
-                    //firebaseDetails();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PhoneLogin(),
+                      ),
+                    );
                   },
                 ),
                 //child: PhoneLogin(),
               ),
-              Container(
+              /*Container(
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: TextFormField(
@@ -66,11 +73,17 @@ class _LoginPage1State extends State<LoginPage1> {
               ),
               Container(
                 child: FloatingActionButton(
+                  heroTag: 'btn2',
                   onPressed: () async {
                     validation();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PhoneLogin(),
+                        ));
                   },
                 ),
-              ),
+              ),*/
             ],
           ),
         ),
