@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:international_phone_input/international_phone_input.dart';
 import 'package:upentregas/app/models/showtoast.dart';
+import 'package:upentregas/app/repositories/firebase_repository.dart';
 import 'package:upentregas/app/repositories/validation_repository.dart';
 import 'package:upentregas/app/services/telefone_validation.dart';
 import 'package:upentregas/app/views/otp/otp_screen.dart';
@@ -74,18 +75,10 @@ class _PhoneLoginState extends State<PhoneLogin> {
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         print(phoneNo);
                         if (isValid) {
                           validation(phoneNo);
-                          /*Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => OTPScreen(
-                                mobileNumber: phoneNo,
-                              ),
-                            ),
-                          );*/
                         } else {
                           showToast("Telefone Invalido", Colors.red);
                         }
