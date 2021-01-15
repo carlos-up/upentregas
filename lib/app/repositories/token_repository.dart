@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:upentregas/app/models/showtoast.dart';
+import 'package:upentregas/app/models/showtoast_model.dart';
 import 'package:upentregas/app/repositories/firebase_repository.dart';
 import 'dart:convert';
 import 'package:upentregas/app/shared/constants.dart';
 import 'package:upentregas/app/shared/textfield_controllers.dart';
 
 void tokenProject() async {
-  if (employeeController.text != '') {
+  if (employeeController.text != '' && employeeController.text.length == 8) {
     final apiencode = jsonEncode({"ID_Cliente": "${employeeController.text}"});
     http.Response response = await http.post(
       tokenurl,

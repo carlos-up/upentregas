@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:upentregas/app/services/phone_auth.dart';
-import 'package:upentregas/app/views/home/home.dart';
 import 'package:upentregas/app/views/login/login.dart';
+import 'package:upentregas/app/views/veiculo/veiculo.dart';
 
 class App extends StatefulWidget {
   App({Key key}) : super(key: key);
@@ -34,7 +33,7 @@ class _AppState extends State<App> {
     print(user);
     return Scaffold(
       body: user != null
-          ? HomePage(
+          ? Veiculo(
               user: user,
             )
           : LoginPage1(),

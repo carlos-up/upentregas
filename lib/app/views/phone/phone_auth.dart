@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:international_phone_input/international_phone_input.dart';
-import 'package:upentregas/app/models/showtoast.dart';
-import 'package:upentregas/app/repositories/firebase_repository.dart';
+import 'package:upentregas/app/models/showtoast_model.dart';
+import 'package:upentregas/app/models/telefone_model.dart';
 import 'package:upentregas/app/repositories/validation_repository.dart';
-import 'package:upentregas/app/services/telefone_validation.dart';
 import 'package:upentregas/app/views/otp/otp_screen.dart';
 
 class PhoneLogin extends StatefulWidget {
@@ -11,11 +11,37 @@ class PhoneLogin extends StatefulWidget {
 
   @override
   _PhoneLoginState createState() => _PhoneLoginState();
+
+  get context => context;
+
+  void telefoneValidation(Telefone validacao, String phoneNo) {
+    String phone = validacao.telefone;
+    int situacao = validacao.situacao;
+    String situacaoDescricao = validacao.situacaoDescricao;
+
+    if (phoneNo == phone && situacao == 0 && situacaoDescricao == "ATIVO") {
+      showToast("Telefone VALIDO!", Colors.blue);
+      Get.to(
+        OTPScreen(
+          mobileNumber: phoneNo,
+        ),
+      );
+    } else if (phoneNo == phone &&
+        situacao == 1 &&
+        situacaoDescricao == "INATIVO") {
+      showToast("Telefone INATIVO entre em contato conosco!", Colors.red);
+    } else {
+      showToast(
+          "Nao existe licenca valida, entre em contato conosco", Colors.red);
+    }
+  }
 }
 
 class _PhoneLoginState extends State<PhoneLogin> {
   String phoneNo;
   bool isValid = false;
+
+  Telefone telefone = Telefone();
 
   @override
   Widget build(BuildContext context) {
@@ -77,11 +103,7 @@ class _PhoneLoginState extends State<PhoneLogin> {
                       ),
                       onPressed: () async {
                         print(phoneNo);
-                        if (isValid) {
-                          validation(phoneNo);
-                        } else {
-                          showToast("Telefone Invalido", Colors.red);
-                        }
+                        validation(phoneNo);
                       },
                       padding: EdgeInsets.all(16.0),
                     ),

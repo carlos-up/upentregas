@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:upentregas/app/models/showtoast.dart';
-import 'package:upentregas/app/views/home/home.dart';
-import 'package:upentregas/app/views/otp/otp_input.dart';
+import 'package:upentregas/app/models/otp_input_model.dart';
+import 'package:upentregas/app/models/showtoast_model.dart';
+import 'package:upentregas/app/views/veiculo/veiculo.dart';
 
 class OTPScreen extends StatefulWidget {
   final String mobileNumber;
@@ -151,7 +151,7 @@ class _OTPScreenState extends State<OTPScreen> {
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage(
+                builder: (context) => Veiculo(
                   user: value.user,
                 ),
               ),
@@ -209,7 +209,7 @@ class _OTPScreenState extends State<OTPScreen> {
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(
+              builder: (context) => Veiculo(
                 user: value.user,
               ),
             ),

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:upentregas/app/repositories/token_repository.dart';
-import 'package:upentregas/app/repositories/validation_repository.dart';
-import 'package:upentregas/app/services/phone_auth.dart';
-import 'package:upentregas/app/services/telefone_validation.dart';
 import 'package:upentregas/app/shared/textfield_controllers.dart';
+import 'package:upentregas/app/views/phone/phone_auth.dart';
 
 class LoginPage1 extends StatefulWidget {
   const LoginPage1({Key key}) : super(key: key);
@@ -40,8 +38,8 @@ class _LoginPage1State extends State<LoginPage1> {
                     key: UniqueKey(),
                     controller: employeeController,
                     //keyboardType: TextInputType.number,
-                    decoration:
-                        InputDecoration(hintText: 'Digite o id da empresa'),
+                    decoration: InputDecoration(
+                        hintText: 'Digite o id da empresa, ex(00001234)'),
                   ),
                 ),
               ),
@@ -60,30 +58,6 @@ class _LoginPage1State extends State<LoginPage1> {
                 ),
                 //child: PhoneLogin(),
               ),
-              /*Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: TextFormField(
-                    key: UniqueKey(),
-                    controller: telefoneController,
-                    //keyboardType: TextInputType.number,
-                    decoration: InputDecoration(hintText: 'Digite o telefone'),
-                  ),
-                ),
-              ),
-              Container(
-                child: FloatingActionButton(
-                  heroTag: 'btn2',
-                  onPressed: () async {
-                    validation();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => PhoneLogin(),
-                        ));
-                  },
-                ),
-              ),*/
             ],
           ),
         ),
