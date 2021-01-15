@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+/*import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:upentregas/app/models/projectfirebase_model.dart';
 import 'package:upentregas/app/shared/textfield_controllers.dart';
@@ -35,11 +35,11 @@ void initializeSecondary(Project project) async {
   } else*/
   if (Firebase.apps.length != 0) {
     //INICIA
-    final String name = 'foo';
+    /*final String name = 'foo';
     FirebaseApp app =
         await Firebase.initializeApp(name: name, options: firebaseOptions);
     assert(app != null);
-    print('Initialized $app');
+    print('Initialized $app');*/
     //GRAVA
     final sharedApp = Firebase.app("foo");
     final firestore = FirebaseFirestore.instanceFor(app: sharedApp);
@@ -55,4 +55,4 @@ void initializeSecondary(Project project) async {
   final FirebaseApp app = Firebase.app(name);
   await app?.delete();
   print('App $name deleted');*/
-}
+}*/

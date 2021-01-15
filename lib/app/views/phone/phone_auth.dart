@@ -12,15 +12,14 @@ class PhoneLogin extends StatefulWidget {
   @override
   _PhoneLoginState createState() => _PhoneLoginState();
 
-  get context => context;
-
   void telefoneValidation(Telefone validacao, String phoneNo) {
     String phone = validacao.telefone;
     int situacao = validacao.situacao;
     String situacaoDescricao = validacao.situacaoDescricao;
 
     if (phoneNo == phone && situacao == 0 && situacaoDescricao == "ATIVO") {
-      showToast("Telefone VALIDO!", Colors.blue);
+      //showToast(
+      //    "Telefone VALIDO! $phone $situacao $situacaoDescricao", Colors.blue);
       Get.to(
         OTPScreen(
           mobileNumber: phoneNo,
@@ -29,10 +28,13 @@ class PhoneLogin extends StatefulWidget {
     } else if (phoneNo == phone &&
         situacao == 1 &&
         situacaoDescricao == "INATIVO") {
-      showToast("Telefone INATIVO entre em contato conosco!", Colors.red);
+      showToast(
+          "Telefone INATIVO entre em contato conosco! ($phone $situacao $situacaoDescricao!)",
+          Colors.red);
     } else {
       showToast(
-          "Nao existe licenca valida, entre em contato conosco", Colors.red);
+          "Nao existe licenca valida, entre em contato conosco! ($phone $situacao $situacaoDescricao)",
+          Colors.red);
     }
   }
 }

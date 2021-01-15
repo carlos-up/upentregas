@@ -8,7 +8,7 @@ import 'package:upentregas/app/shared/constants.dart';
 import 'package:upentregas/app/shared/textfield_controllers.dart';
 
 void tokenProject() async {
-  if (employeeController.text != '' && employeeController.text.length == 8) {
+  if (employeeController.text != '' && employeeController.text.length == 9) {
     final apiencode = jsonEncode({"ID_Cliente": "${employeeController.text}"});
     http.Response response = await http.post(
       tokenurl,
@@ -27,9 +27,11 @@ void tokenProject() async {
       _save(tokenresponse["token"]);
 
       connection();
+    } else {
+      showToast("ID Invalido ${employeeController.text}", Colors.red);
     }
   } else {
-    showToast("favor informar o id do cliente", Colors.red);
+    showToast("ID Invalido ${employeeController.text}", Colors.red);
   }
 }
 

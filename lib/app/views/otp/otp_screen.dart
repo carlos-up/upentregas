@@ -37,7 +37,7 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     print("isValid - $isCodeSent");
-    print("mobiel ${widget.mobileNumber}");
+    print("mobile ${widget.mobileNumber}");
     return Scaffold(
       //backgroundColor: Colors.white,
       appBar: AppBar(

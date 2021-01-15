@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -33,6 +34,13 @@ class _VeiculoState extends State<Veiculo> {
     }
   }
 
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut().catchError((error) {
+      print(error.toString());
+    });
+    Get.to(LoginPage1());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,10 +51,7 @@ class _VeiculoState extends State<Veiculo> {
               Icons.exit_to_app_sharp,
             ),
             onPressed: () {
-              _firebaseAuth.signOut();
-              Get.to(
-                LoginPage1(),
-              );
+              signOut();
             },
           )
         ],
@@ -59,7 +64,7 @@ class _VeiculoState extends State<Veiculo> {
             child: Padding(
               padding: const EdgeInsets.all(30.0),
               child: TextFormField(
-                inputFormatters: [maskFormatter],
+                //inputFormatters: [maskFormatter],
                 autovalidate: true,
                 key: UniqueKey(),
                 controller: placaController,
@@ -73,13 +78,14 @@ class _VeiculoState extends State<Veiculo> {
             ),
           ),
           Container(
-            child: FloatingActionButton(
+            child: FloatingActionButton.extended(
               heroTag: 'btn1',
               onPressed: () {
-                if (_validate == null) {
+                if (placa == placaController.text) {
                   Get.to(Romaneio());
                 }
               },
+              label: Text("Verificar placa"),
             ),
             //child: PhoneLogin(),
           ),

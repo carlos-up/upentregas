@@ -12,7 +12,7 @@ validation(String phoneNo) async {
   final key = 'token';
   final value = prefs.get(key) ?? 0;
 
-  final PhoneLogin teste = PhoneLogin();
+  final PhoneLogin phoneLogin = PhoneLogin();
 
   if (value != null) {
     final tel = jsonEncode({"COD_SISTEMA": 12, "TELEFONE": "$phoneNo"});
@@ -36,7 +36,7 @@ validation(String phoneNo) async {
         (element) {
           final validacao = Telefone.fromJson(element);
           print(validacao);
-          teste.telefoneValidation(validacao, phoneNo);
+          phoneLogin.telefoneValidation(validacao, phoneNo);
         },
       );
     } else {
