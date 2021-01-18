@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:upentregas/app/shared/constants.dart';
 import 'package:upentregas/app/shared/textfield_controllers.dart';
 import 'package:upentregas/app/views/login/login.dart';
 
@@ -10,8 +10,6 @@ class Romaneio extends StatefulWidget {
 }
 
 class _RomaneioState extends State<Romaneio> {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +20,9 @@ class _RomaneioState extends State<Romaneio> {
               Icons.exit_to_app_sharp,
             ),
             onPressed: () {
-              _firebaseAuth.signOut();
+              controllerText.clear();
+              employeeController.clear();
+              firebaseAuth.signOut();
               Get.to(
                 LoginPage1(),
               );
@@ -33,6 +33,16 @@ class _RomaneioState extends State<Romaneio> {
       ),
       body: Column(
         children: <Widget>[
+          Container(
+            padding: EdgeInsets.only(top: 130.0),
+            child: Center(
+              child: ImageIcon(
+                AssetImage("assets/images/logo.png"),
+                //color: Colors.blue,
+                size: 210.0,
+              ),
+            ),
+          ),
           /*Container(
             child: Padding(
               padding: const EdgeInsets.all(30.0),
@@ -51,9 +61,9 @@ class _RomaneioState extends State<Romaneio> {
             ),
             //child: PhoneLogin(),
           ),*/
-          Center(
+          /*Center(
             child: Text("Tela de Romaneios"),
-          ),
+          ),*/
         ],
       ),
     );

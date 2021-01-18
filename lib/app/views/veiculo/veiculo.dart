@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:upentregas/app/models/showtoast_model.dart';
 import 'package:upentregas/app/shared/constants.dart';
+import 'package:upentregas/app/shared/textfield_controllers.dart';
 import 'package:upentregas/app/views/login/login.dart';
 import 'package:upentregas/app/views/romaneios/romaneio.dart';
 
@@ -43,6 +46,7 @@ class _VeiculoState extends State<Veiculo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _formKey,
       appBar: AppBar(
         actions: <Widget>[
           /*IconButton(
@@ -57,7 +61,6 @@ class _VeiculoState extends State<Veiculo> {
         title: Text("UpEntregas"),
       ),
       body: Column(
-        key: _formKey,
         children: <Widget>[
           /*Container(
             child: Padding(
@@ -84,9 +87,9 @@ class _VeiculoState extends State<Veiculo> {
                 controller: controllerText,
                 decoration: InputDecoration(hintText: 'XXX-XXXX'),
                 validator: _validate,
-                onSaved: (String val) {
+                /*onSaved: (String val) {
                   validarForm = val;
-                },
+                },*/
               ),
             ),
           ),
@@ -111,7 +114,8 @@ class _VeiculoState extends State<Veiculo> {
     if (result.docs.isEmpty) {
       showToast("A placa informada nao foi encontrada ${controllerText.text}",
           Colors.red);
-      Get.to(LoginPage1());
+      firebaseAuth.signOut();
+      Timer(Duration(seconds: 5), changeScreen);
     } else {
       result.docs.forEach(
         (res) {
@@ -120,5 +124,13 @@ class _VeiculoState extends State<Veiculo> {
         },
       );
     }
+  }
+
+  changeScreen() async {
+    controllerText.clear();
+    employeeController.clear();
+    Get.to(
+      LoginPage1(),
+    );
   }
 }

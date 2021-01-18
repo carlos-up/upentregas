@@ -29,11 +29,11 @@ class PhoneLogin extends StatefulWidget {
         situacao == 1 &&
         situacaoDescricao == "INATIVO") {
       showToast(
-          "Telefone INATIVO entre em contato conosco! ($phone $situacao $situacaoDescricao!)",
+          "Telefone INATIVO entre em contato conosco! ($phone $situacaoDescricao!)",
           Colors.red);
     } else {
       showToast(
-          "Nao existe licenca valida, entre em contato conosco! ($phone $situacao $situacaoDescricao)",
+          "Nao existe licenca valida, entre em contato conosco! ($phone $situacaoDescricao)",
           Colors.red);
     }
   }

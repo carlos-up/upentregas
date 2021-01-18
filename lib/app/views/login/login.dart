@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,10 +52,11 @@ class LoginPage1 extends StatefulWidget {
 
 class _LoginPage1State extends State<LoginPage1> {
   String text = '';
-
+  static final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _formKey,
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -75,8 +75,8 @@ class _LoginPage1State extends State<LoginPage1> {
               Container(
                 child: Padding(
                   padding: const EdgeInsets.all(30.0),
-                  child: TextFormField(
-                    key: UniqueKey(),
+                  child: TextField(
+                    //key: UniqueKey(),
                     controller: employeeController,
                     //keyboardType: TextInputType.number,
                     decoration: InputDecoration(
