@@ -1,9 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:upentregas/app/models/showtoast_model.dart';
 import 'package:upentregas/app/shared/constants.dart';
-import 'package:upentregas/app/shared/textfield_controllers.dart';
 import 'package:upentregas/app/views/login/login.dart';
 import 'package:upentregas/app/views/romaneios/romaneio.dart';
 
@@ -46,30 +45,44 @@ class _VeiculoState extends State<Veiculo> {
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
-          IconButton(
+          /*IconButton(
             icon: Icon(
               Icons.exit_to_app_sharp,
             ),
             onPressed: () {
               signOut();
             },
-          )
+          )*/
         ],
         title: Text("UpEntregas"),
       ),
       body: Column(
         key: _formKey,
         children: <Widget>[
+          /*Container(
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: TextFormField(
+                inputFormatters: [maskFormatter],
+                autovalidate: true,
+                key: UniqueKey(),
+                controller: placaController,
+                decoration: InputDecoration(hintText: 'XXX-XXXX'),
+                validator: _validate,
+                onSaved: (String val) {
+                  validarForm = val;
+                },
+              ),
+            ),
+          ),*/
           Container(
             child: Padding(
               padding: const EdgeInsets.all(30.0),
               child: TextFormField(
-                //inputFormatters: [maskFormatter],
                 autovalidate: true,
                 key: UniqueKey(),
-                controller: placaController,
-                decoration: InputDecoration(
-                    hintText: 'Digite a placa do veiculo (ex:XXX-XXXX)'),
+                controller: controllerText,
+                decoration: InputDecoration(hintText: 'XXX-XXXX'),
                 validator: _validate,
                 onSaved: (String val) {
                   validarForm = val;
@@ -81,19 +94,31 @@ class _VeiculoState extends State<Veiculo> {
             child: FloatingActionButton.extended(
               heroTag: 'btn1',
               onPressed: () {
-                if (placa == placaController.text) {
-                  Get.to(Romaneio());
-                }
+                validarPlaca();
               },
               label: Text("Verificar placa"),
             ),
-            //child: PhoneLogin(),
           ),
-          /*Center(
-            child: Text(user.phoneNumber),
-          ),*/
         ],
       ),
     );
+  }
+
+  Future<void> validarPlaca() async {
+    var result =
+        await placaRef.where("Placa", isEqualTo: controllerText.text).get();
+
+    if (result.docs.isEmpty) {
+      showToast("A placa informada nao foi encontrada ${controllerText.text}",
+          Colors.red);
+      Get.to(LoginPage1());
+    } else {
+      result.docs.forEach(
+        (res) {
+          print(res.data());
+          Get.to(Romaneio());
+        },
+      );
+    }
   }
 }

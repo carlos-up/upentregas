@@ -4,7 +4,12 @@ import 'package:get/get.dart';
 import 'package:upentregas/app/shared/textfield_controllers.dart';
 import 'package:upentregas/app/views/login/login.dart';
 
-class Romaneio extends StatelessWidget {
+class Romaneio extends StatefulWidget {
+  @override
+  _RomaneioState createState() => _RomaneioState();
+}
+
+class _RomaneioState extends State<Romaneio> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
@@ -24,11 +29,11 @@ class Romaneio extends StatelessWidget {
             },
           )
         ],
-        title: Text("UpEntregas"),
+        title: Text("Romaneios"),
       ),
       body: Column(
         children: <Widget>[
-          Container(
+          /*Container(
             child: Padding(
               padding: const EdgeInsets.all(30.0),
               child: TextFormField(
@@ -45,10 +50,10 @@ class Romaneio extends StatelessWidget {
               onPressed: () async {},
             ),
             //child: PhoneLogin(),
-          ),
-          /*Center(
-            child: Text(user.phoneNumber),
           ),*/
+          Center(
+            child: Text("Tela de Romaneios"),
+          ),
         ],
       ),
     );

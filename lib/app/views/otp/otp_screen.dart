@@ -218,7 +218,7 @@ class _OTPScreenState extends State<OTPScreen> {
         showToast("Error validating OTP, try again", Colors.red);
       }
     }).catchError((error) {
-      showToast("Something went wrong", Colors.red);
+      print("Something went wrong");
     });
   }
 }
